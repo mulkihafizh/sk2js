@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Studi Kasus-2</title>
+  </head>
+  <body>
+    <h1>Show Prompt</h1>
+    <button onclick="show()">Click</button>
+
+    <script>
+      function show() {
+        let step_1 = prompt(
+          `Pilih Hal yang akan dilakukan (1/2):
+              1. Membulatkan angka
+              2. Menghitung umur`,
+          " "
+        );
+        try {
+          if (parseInt(step_1) > 2 || parseInt(step_1) < 0) {
+            throw "Error1";
+          } else if (step_1 == " ") {
+            throw "Error2";
+          } else if (!parseInt(step_1)) {
+            throw "Error3";
+          }
+        } catch (err) {
+          if (err == "Error1") {
+            alert("Inputan harus 1 atau 2");
+          } else if (err == "Error2") {
+            alert("Harus mengisi inputan!");
+          } else if (err == "Error3") {
+            alert("Inputan harus angka");
+          }
+        }
+        if (step_1 == 1) {
+          let step_21 = prompt(`Masukan angka desimal:`, "");
+          try {
+            if (step_21.includes(",")) {
+              throw "Error1";
+            } else if (Number.isInteger(parseFloat(step_21))) {
+              throw "Error2";
+            } else if (step_21 == "") {
+              throw "Error3";
+            }
+          } catch (err) {
+            if (err == "Error1") {
+              alert("Inputan harus menggunakan titik");
+            } else if (err == "Error2") {
+              alert("Inputan harus angka desimal");
+            } else if (err == "Error3") {
+              alert("Harus mengisi inputan!");
+            }
+          }
+          if (!Number.isInteger(parseFloat(step_21))) {
+            alert(`Pembulatan dari angka ${step_21} = ${Math.round(step_21)}`);
+          }
+        } else if (step_1 == 2) {
+          let year = new Date().getFullYear();
+          let step_22 = prompt(`Masukan tahun lahir:`, "");
+          try {
+            if (step_22 > year) {
+              throw "Error1";
+            } else if (step_22 == "") {
+              throw "Error2";
+            } else if (!parseInt(step_22)) {
+              throw "Error3";
+            }
+          } catch (err) {
+            if (err == "Error1") {
+              alert("Tahun lahir tidak boleh lebih dari tahun sekarang");
+            } else if (err == "Error2") {
+              alert("Harus mengisi inputan!");
+            } else if (err == "Error3") {
+              alert("Inputan harus angka");
+            }
+          }
+          if (parseInt(step_22) && err !== "Error1") {
+            alert(`Umur anda adalah ${year - step_22} tahun`);
+          }
+        }
+      }
+
+      console.log(Number.isInteger(parseFloat("2.1")));
+    </script>
+  </body>
+</html>
